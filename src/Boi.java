@@ -7,7 +7,8 @@ public class Boi extends Sprite {
 
     public Boi(int x, int y, int dir, World world){
         super(x, y, dir, world);
-        
+        setPic("Boi.png")
+
 
     }
 }
