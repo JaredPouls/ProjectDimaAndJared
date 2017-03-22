@@ -15,12 +15,13 @@ public class Main extends JPanel {
 
         //These are the Sprites that are added to the World... bruh
         for (int i = 0; i < 51; i++) {
-            int rand = (int)(Math.random()*3);
-            int x = (int)(Math.random()*500 + 50);
-            int y = (int)(Math.random()*500 + 50);
-            if(rand == 0)
-                theWorld.addSprite(new Sprite(x, y, (int)(Math.random()*40+15), theWorld));
+            int rand = (int) (Math.random() * 3);
+            int x = (int) (Math.random() * 500 + 50);
+            int y = (int) (Math.random() * 500 + 50);
+            if (rand == 0) ;
         }
+
+
 
 
 
