@@ -19,15 +19,9 @@ public class Main extends JPanel {
             int x = (int)(Math.random()*500 + 50);
             int y = (int)(Math.random()*500 + 50);
             if(rand == 0)
-                theWorld.addSprite(new Bug(theWorld));
-            else if(rand == 1)
                 theWorld.addSprite(new Sprite(x, y, (int)(Math.random()*40+15), theWorld));
-            else if(rand == 2 && theWorld.getAllSprites().size() > 1)
-                theWorld.addSprite(new Predator(x, y, theWorld));
-            else
-                theWorld.addSprite(new Sprite(x, y, Sprite.EAST, theWorld));
         }
-        theWorld.addSprite(new ZombieChaser(10, 10, theWorld));
+
 
 
         timer = new Timer(40, new ActionListener() {
