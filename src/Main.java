@@ -18,7 +18,7 @@ public class Main extends JPanel {
         for (int i = 0; i < 51; i++) {
             int rand = (int) (Math.random() * 3);
             int x = (int) (Math.random() * 500 + 50);
-            int y = (int) (Math.random() * 500 + 51);
+            int y = (int) (Math.random() * 500 + 53);
             if (rand == 0) ;
         }
 
