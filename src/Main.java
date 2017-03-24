@@ -8,10 +8,11 @@ public class Main extends JPanel {
 
     private Timer timer;
     private World theWorld;
-
+    private Sprite boi = new Boi(100, 100, Sprite.NORTH, theWorld);
     public Main(){
 
         theWorld = new World(FRAMEWIDTH, FRAMEHEIGHT);
+
 
         //These are the Sprites that are added to the World... bruh
         for (int i = 0; i < 51; i++) {
@@ -46,6 +47,15 @@ public class Main extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
+                if(keyEvent.getKeyChar() == 'w'){
+                    boi.setDir(Sprite.NORTH);
+                    boi.update();
+
+                }
+                if(keyEvent.getKeyChar() == 's') {
+                    boi.setDir(Sprite.SOUTH);
+                    boi.update();
+                }
 
             }
 
@@ -95,6 +105,7 @@ public class Main extends JPanel {
 
         //Draws all the sprites.
         theWorld.drawSprites(g2);
+        boi.draw(g2);
 
     }
 
