@@ -10,7 +10,6 @@ public class Main extends JPanel {
     private Timer timer;
     private World theWorld;
     private Sprite boi = new Boi(100,100,Sprite.NORTH,theWorld);
-    private Image img = Toolkit.getDefaultToolkit().createImage("Backy.png");
 
 
     public Main(){

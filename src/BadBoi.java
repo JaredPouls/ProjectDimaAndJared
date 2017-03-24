@@ -1,20 +1,37 @@
-import java.awt.*;
+import java.util.ArrayList;
 
 /**
- * Created by dmitry_ilin on 3/21/17.
+ * Created by michael_hopps on 2/3/17.
  */
+public class BadBoi extends Sprite {
 
-// bad bois bad bois whacha gonna do? whachha gonna do when they come for you
-public class BadBoi extends Sprite{
+    private Sprite target;
 
-    public BadBoi(int x, int y, int dir, World world){
-        super(x, y, dir, world);
-        setPic("BadBoi.png", NORTH);
-        setLoc(new Point(500,500));
+    public BadBoi(int x, int y, World world) {
+        super(x, y, EAST, world);
+
+        ArrayList<Sprite> sprites = world.getAllSprites();
+        target = sprites.get( (int)(Math.random()*sprites.size()) );
+        while(target.equals(this) && sprites.size() > 1){
+            target = sprites.get( (int)(Math.random()*sprites.size()) );
+        }
+        setPic("chaser.png", NORTH);
+        setSpeed(10);
     }
 
+    @Override
+    public void update(){
+        int d = getWorld().getDirection(this.getLoc(), target.getLoc());
+        setDir(d);
 
+        super.update();
+    }
 
+    public Sprite getTarget(){
+        return target;
+    }
+    public void setTarget(Sprite newTarget){
+        target = newTarget;
+    }
 
 }
-
