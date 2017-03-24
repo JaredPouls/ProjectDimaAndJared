@@ -20,7 +20,7 @@ public class Sprite {
     public Sprite(World world) {
         loc = new Point(0, 0);
         dir = EAST;
-        setPic("girl.png", NORTH);
+        setPic("Boi.png", NORTH);
         myWorld = world;
         speed = 5;
 
@@ -31,7 +31,7 @@ public class Sprite {
     public Sprite(int x, int y, int direction, World world) {
         loc = new Point(x, y);
         dir = direction;
-        setPic("girl.png", NORTH);
+        setPic("Boi.png", NORTH);
         myWorld = world;
         speed = 5;
 
@@ -59,10 +59,10 @@ public class Sprite {
         double locationY = pic.getHeight() / 2;
 //        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
 //        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        g2.rotate(rotationRequired, loc.x+locationX, loc.y+locationX);
+//        g2.rotate(rotationRequired, loc.x+locationX, loc.y+locationX);
 //        g2.drawImage(op.filter(pic, null), loc.x, loc.y, null);
         g2.drawImage(pic, loc.x, loc.y, null);
-        g2.rotate(-rotationRequired, loc.x+locationX, loc.y+locationX);
+//        g2.rotate(-rotationRequired, loc.x+locationX, loc.y+locationX);
     }
 
     /**

@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,7 +9,10 @@ public class Main extends JPanel {
 
     private Timer timer;
     private World theWorld;
-    private Sprite boi = new Boi(100, 100, Sprite.NORTH, theWorld);
+    private Sprite boi = new Boi(100,100,Sprite.NORTH,theWorld);
+    private Image img = Toolkit.getDefaultToolkit().createImage("Backy.png");
+
+
     public Main(){
 
         theWorld = new World(FRAMEWIDTH, FRAMEHEIGHT);
@@ -54,6 +58,14 @@ public class Main extends JPanel {
                 }
                 if(keyEvent.getKeyChar() == 's') {
                     boi.setDir(Sprite.SOUTH);
+                    boi.update();
+                }
+                if(keyEvent.getKeyChar() == 'a'){
+                    boi.setDir(Sprite.WEST);
+                    boi.update();
+                }
+                if(keyEvent.getKeyChar() == 'd'){
+                    boi.setDir(Sprite.EAST);
                     boi.update();
                 }
 
@@ -103,6 +115,8 @@ public class Main extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
+
+
         //Draws all the sprites.
         theWorld.drawSprites(g2);
         boi.draw(g2);
@@ -111,7 +125,7 @@ public class Main extends JPanel {
 
     //sets ups the panel and frame.
     public static void main(String[] args) {
-        JFrame window = new JFrame("SpriteLand");
+        JFrame window = new JFrame("Dodger Land");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(0, 0, FRAMEWIDTH, FRAMEHEIGHT + 22); //(x, y, w, h) 20 due to title bar.
 
