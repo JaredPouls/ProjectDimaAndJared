@@ -2,7 +2,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 public class Main extends JPanel {
 
@@ -11,14 +10,13 @@ public class Main extends JPanel {
     private Timer timer;
     private World theWorld;
     private Sprite boi = new Boi(100,100,Sprite.NORTH,theWorld);
-
+    private boolean[] keys;
 
 
     public Main(){
 
         theWorld = new World(FRAMEWIDTH, FRAMEHEIGHT);
-        theWorld.setBackground("Backy.jpeg");
-
+        keys = new boolean[512];
 
         //These are the Sprites that are added to the World... bruh
         for (int i = 0; i < 51; i++) {
@@ -28,15 +26,26 @@ public class Main extends JPanel {
             if (rand == 0) ;
         }
 
-
-
-
-
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
-                //This will call update on each sprite..
+                if(keys[KeyEvent.VK_W]){
+                    boi.setDir(Sprite.NORTH);
+                    boi.update();
+                }
+                if(keys[KeyEvent.VK_S]) {
+                    boi.setDir(Sprite.SOUTH);
+                    boi.update();
+                }
+                if(keys[KeyEvent.VK_A]){
+                    boi.setDir(Sprite.WEST);
+                    boi.update();
+                }
+                if(keys[KeyEvent.VK_D]){
+                    boi.setDir(Sprite.EAST);
+                    boi.update();
+                }
+                //This will call update on each sprite.
                 theWorld.updateSprites();
                 repaint();
             }
@@ -53,29 +62,12 @@ public class Main extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-                if(keyEvent.getKeyChar() == 'w'){
-                    boi.setDir(Sprite.NORTH);
-                    boi.update();
-
-                }
-                if(keyEvent.getKeyChar() == 's') {
-                    boi.setDir(Sprite.SOUTH);
-                    boi.update();
-                }
-                if(keyEvent.getKeyChar() == 'a'){
-                    boi.setDir(Sprite.WEST);
-                    boi.update();
-                }
-                if(keyEvent.getKeyChar() == 'd'){
-                    boi.setDir(Sprite.EAST);
-                    boi.update();
-                }
-
+               keys[keyEvent.getKeyCode()] =  true;
             }
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
-
+                keys[keyEvent.getKeyCode()] =  false;
             }
         });
 
