@@ -55,17 +55,17 @@ public class World {
     public void drawSprites(Graphics2D g2){
         if(background != null)
             g2.drawImage(background, 0, 0, null);
-
-        g2.setColor(Color.BLACK);
-        g2.drawRect(0,0,width,height);
+//
+//        g2.setColor(Color.BLACK);
+//        g2.drawRect(0,0,width,height);
 
         for (int i = 0; i < sprites.size(); i++) {
             sprites.get(i).draw(g2);
         }
-        g2.fill(top);
-        g2.fill(bottom);
-        g2.fill(leftSide);
-        g2.fill(rightSide);
+//        g2.fill(top);
+//        g2.fill(bottom);
+//        g2.fill(leftSide);
+//        g2.fill(rightSide);
     }
 
 

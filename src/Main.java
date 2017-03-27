@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class Main extends JPanel {
 
@@ -12,9 +13,11 @@ public class Main extends JPanel {
     private Sprite boi = new Boi(100,100,Sprite.NORTH,theWorld);
 
 
+
     public Main(){
 
         theWorld = new World(FRAMEWIDTH, FRAMEHEIGHT);
+        theWorld.setBackground("Backy.jpeg");
 
 
         //These are the Sprites that are added to the World... bruh
