@@ -36,7 +36,7 @@ public class Main extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                //This will call update on each sprite.
+                //This will call update on each sprite..
                 theWorld.updateSprites();
                 repaint();
             }
