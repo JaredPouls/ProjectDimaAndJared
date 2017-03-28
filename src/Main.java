@@ -16,6 +16,7 @@ public class Main extends JPanel {
     public Main(){
 
         theWorld = new World(FRAMEWIDTH, FRAMEHEIGHT);
+        theWorld.setBackground("Backy.jpeg");
         keys = new boolean[512];
 
         //These are the Sprites that are added to the World... bruh.
