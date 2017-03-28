@@ -20,7 +20,7 @@ public class Main extends JPanel {
         theWorld.setBackground("Backy.jpeg");
 
 
-        //These are the Sprites that are added to the World... bruh
+        //These are the Sprites that are added to the World... bruh.
         for (int i = 0; i < 51; i++) {
             int rand = (int) (Math.random() * 3);
             int x = (int) (Math.random() * 500 + 50);
