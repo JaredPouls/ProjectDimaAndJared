@@ -10,6 +10,7 @@ public class Main extends JPanel {
     private Timer timer;
     private World theWorld;
     private Sprite boi = new Boi(100,100,Sprite.NORTH,theWorld);
+    private Sprite badboi = new BadBoi(400,400,Sprite.NORTH,theWorld);
     private boolean[] keys;
 
 
@@ -115,6 +116,7 @@ public class Main extends JPanel {
         //Draws all the sprites.
         theWorld.drawSprites(g2);
         boi.draw(g2);
+        badboi.draw(g2);
 
     }
 

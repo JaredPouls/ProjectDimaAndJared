@@ -33,18 +33,7 @@ public class Sprite {
         dir = direction;
         setPic("Boi.png", NORTH);
         myWorld = world;
-        speed = 5;
-
-        id = nextID;
-        nextID++;
-    }
-
-    public Sprite(Point location, int direction, World world) {
-        loc = location;
-        dir = direction;
-        setPic("girl.png", NORTH);
-        myWorld = world;
-        speed = 5;
+        speed = 10;
 
         id = nextID;
         nextID++;
