@@ -1,7 +1,10 @@
+import sun.tools.tree.WhileStatement;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Main extends JPanel {
 
@@ -10,8 +13,9 @@ public class Main extends JPanel {
     private Timer timer;
     private World theWorld;
     private Sprite boi = new Boi(100,100,Sprite.NORTH,theWorld);
-    private Sprite badboi = new BadBoi(400,400,Sprite.NORTH,theWorld);
+    private ArrayList<Sprite> badboi = new ArrayList<Sprite>();
     private boolean[] keys;
+    private ArrayList<Sprite> bullets = new ArrayList<Sprite>();
 
 
     public Main(){
@@ -19,6 +23,21 @@ public class Main extends JPanel {
         theWorld = new World(FRAMEWIDTH, FRAMEHEIGHT);
         theWorld.setBackground("Backy.jpeg");
         keys = new boolean[512];
+
+        for (int i = 0; i < 5; i++) {
+
+
+            badboi.add(new BadBoi((int) (Math.random() * FRAMEWIDTH), (int) (Math.random() * FRAMEHEIGHT), Sprite.NORTH, theWorld));
+
+        }
+
+        for (Sprite b: badboi) {
+            bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld));
+
+        }
+
+
+
 
         //These are the Sprites that are added to the World... bruh.
         for (int i = 0; i < 51; i++) {
@@ -29,6 +48,7 @@ public class Main extends JPanel {
         }
 
         timer = new Timer(40, new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if(keys[KeyEvent.VK_W]){
@@ -49,8 +69,19 @@ public class Main extends JPanel {
                 }
                 //This will call update on each sprite.
                 theWorld.updateSprites();
+//                for(Sprite b: badboi){
+//                    b.update();
+//                }
+
+
+
+                for(Sprite b: bullets){
+                    b.update();
+                }
                 repaint();
             }
+
+
         });
         timer.start();
 
@@ -116,7 +147,15 @@ public class Main extends JPanel {
         //Draws all the sprites.
         theWorld.drawSprites(g2);
         boi.draw(g2);
-        badboi.draw(g2);
+        for (Sprite b: badboi) {
+            b.draw(g2);
+
+
+        }
+        for (Sprite b: bullets) {
+            b.draw(g2);
+
+        }
 
     }
 

@@ -12,6 +12,7 @@ public class Boi extends Sprite {
 
     @Override
     public void update() {
+
         //check if this bug is hitting the sides
         //rotate by -90 or 270
 
