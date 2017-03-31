@@ -32,7 +32,7 @@ public class Main extends JPanel {
         }
 
         for (Sprite b: badboi) {
-            bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld));
+            bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld, boi));
 
         }
 

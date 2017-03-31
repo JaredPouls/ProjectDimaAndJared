@@ -13,6 +13,10 @@ public class BadBoi extends Sprite{
         //setLoc(new Point(500,500));
     }
 
+    public void update(){
+
+    }
+
 
 
 

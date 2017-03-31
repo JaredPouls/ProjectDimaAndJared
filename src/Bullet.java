@@ -7,16 +7,16 @@ public class Bullet extends Sprite {
 
     private Sprite target;
 
-    public Bullet(int x, int y, World world) {
+    public Bullet(int x, int y, World world, Sprite target) {
         super(x, y, EAST, world);
 
         ArrayList<Sprite> sprites = world.getAllSprites();
-        target = sprites.get( (int)(Math.random()*sprites.size()) );
+        this.target = target;
         while(target.equals(this) && sprites.size() > 1){
             target = sprites.get( (int)(Math.random()*sprites.size()) );
         }
         setPic("fire.png",NORTH);
-        setSpeed(10);
+        setSpeed((int)(Math.random() * 8) + 5);
     }
 
     @Override
