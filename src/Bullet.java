@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Bullet extends Sprite {
 
     private Sprite target;
+    private int counter;
 
     public Bullet(int x, int y, World world, Sprite target) {
         super(x, y, EAST, world);
@@ -17,10 +18,12 @@ public class Bullet extends Sprite {
         }
         setPic("fire.png",NORTH);
         setSpeed((int)(Math.random() * 8) + 5);
+        counter=0;
     }
 
     @Override
     public void update(){
+        counter++;
         int d = getWorld().getDirection(this.getLoc(), target.getLoc());
         setDir(d);
 
@@ -32,5 +35,8 @@ public class Bullet extends Sprite {
     }
     public void setTarget(Sprite newTarget){
         target = newTarget;
+    }
+    public int getCounter(){
+        return counter;
     }
 }

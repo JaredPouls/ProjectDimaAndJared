@@ -77,7 +77,33 @@ public class Main extends JPanel {
 
                 for(Sprite b: bullets){
                     b.update();
+                    if(b.intersects(boi)){
+                        boi.setLoc(new Point(1000000, 10000000));
+
+                    }
                 }
+                for (Sprite b: bullets) {
+                    for (Sprite c: badboi) {
+
+                        if(((Bullet)b).getCounter() >= 20) {
+                            if (b.intersects(c)) {
+                                b.setLoc(new Point(1000000, 100000000));
+                                c.setLoc(new Point(100000, 10000000));
+                            }
+                        }
+
+                    }
+
+                }
+
+
+
+                if(boi.getLoc().x == 1000000)
+                    for(Sprite s: bullets){
+                        ((Bullet)s).setSpeed(0);
+                    }
+
+
                 repaint();
             }
 
