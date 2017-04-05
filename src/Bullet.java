@@ -17,7 +17,7 @@ public class Bullet extends Sprite {
             target = sprites.get( (int)(Math.random()*sprites.size()) );
         }
         setPic("fire.png",NORTH);
-        setSpeed((int)(Math.random() * 8) + 5);
+        setSpeed((int)(Math.random() * 7) + 5);
         counter=0;
     }
 

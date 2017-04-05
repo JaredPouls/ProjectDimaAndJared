@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Main extends JPanel {
 
-    public static final int FRAMEWIDTH = 1650, FRAMEHEIGHT = 900;// thing
+    public static final int FRAMEWIDTH = 1400, FRAMEHEIGHT = 800;// thing
 
     private Timer timer;
     private World theWorld;
@@ -27,7 +27,7 @@ public class Main extends JPanel {
         for (int i = 0; i < 5; i++) {
 
 
-            badboi.add(new BadBoi((int) (Math.random() * FRAMEWIDTH), (int) (Math.random() * FRAMEHEIGHT), Sprite.NORTH, theWorld));
+            badboi.add(new BadBoi((int) (Math.random() * (FRAMEWIDTH - 150)+75), (int) (Math.random() * (FRAMEHEIGHT - 150)+75), Sprite.NORTH, theWorld));
 
         }
 
@@ -181,6 +181,10 @@ public class Main extends JPanel {
         for (Sprite b: bullets) {
             b.draw(g2);
 
+        }
+
+        if(boi.getLoc().x == 1000000){
+            g2.fillRect(0,0,FRAMEWIDTH,FRAMEHEIGHT);
         }
 
     }

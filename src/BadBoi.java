@@ -10,7 +10,6 @@ public class BadBoi extends Sprite{
     public BadBoi(int x, int y, int dir, World world){
         super(x, y, dir, world);
         setPic("BadBoi.png", NORTH);
-        //setLoc(new Point(500,500));
     }
 
     public void update(){
