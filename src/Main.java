@@ -16,6 +16,7 @@ public class Main extends JPanel {
     private ArrayList<Sprite> badboi = new ArrayList<Sprite>();
     private boolean[] keys;
     private ArrayList<Sprite> bullets = new ArrayList<Sprite>();
+    private int level;
 
 
     public Main(){
@@ -95,6 +96,7 @@ public class Main extends JPanel {
                     }
 
                 }
+
 
 
 
@@ -183,10 +185,21 @@ public class Main extends JPanel {
 
         }
 
-        if(boi.getLoc().x == 1000000){
+        if(boi.getLoc().x >= FRAMEWIDTH + 500){
             g2.fillRect(0,0,FRAMEWIDTH,FRAMEHEIGHT);
+            g2.setPaint(Color.RED);
+            g2.setFont(new Font("Arial", Font.BOLD, 32));
+            g2.drawString("YOU LOSE", FRAMEWIDTH/2, FRAMEHEIGHT/3);
+            g2.setFont(new Font("Arial", Font.BOLD, 46));
+            g2.drawString("GAME OVER", FRAMEWIDTH/2, FRAMEHEIGHT/2);
         }
 
+    }
+
+    public void loadlevel(){
+        //arraylist.clear()
+        //if(level == 1){}
+        //stuff
     }
 
     //sets ups the panel and frame.
