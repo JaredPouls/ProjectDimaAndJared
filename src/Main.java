@@ -92,7 +92,7 @@ public class Main extends JPanel {
                 //This will call update on each sprite.
                 theWorld.updateSprites();
 //                for(Sprite b: badboi){
-//                    b.update();
+//                    b.update();kjgf
 //                }
 
 
