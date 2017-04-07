@@ -17,7 +17,7 @@ public class Main extends JPanel {
     private boolean[] keys;
     private ArrayList<Sprite> bullets = new ArrayList<Sprite>();
     private int level;
-
+    private int points = 0;
 
     public Main(){
 
@@ -25,17 +25,22 @@ public class Main extends JPanel {
         theWorld.setBackground("Backy.jpeg");
         keys = new boolean[512];
 
-        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 5; i++) {
+//
+//
+//            badboi.add(new BadBoi((int) (Math.random() * (FRAMEWIDTH-150)+75), (int) (Math.random() * (FRAMEHEIGHT-150)+75), Sprite.NORTH, theWorld));
+//
+//        }
+//
+//        for (Sprite b: badboi) {
+//            bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld, boi));
+//
+//        }
+        level = 0;
+
+        //loadLevel();
 
 
-            badboi.add(new BadBoi((int) (Math.random() * (FRAMEWIDTH - 150)+75), (int) (Math.random() * (FRAMEHEIGHT - 150)+75), Sprite.NORTH, theWorld));
-
-        }
-
-        for (Sprite b: badboi) {
-            bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld, boi));
-
-        }
 
 
 
@@ -68,6 +73,22 @@ public class Main extends JPanel {
                     boi.setDir(Sprite.EAST);
                     boi.update();
                 }
+                if(keys[KeyEvent.VK_R]){
+                    level = 1;
+                    loadLevel();
+                    boi.setLoc(new Point(100, 100));
+                    points = 0;
+                }
+                if(keys[KeyEvent.VK_SPACE]){
+                    level = 1;
+                    loadLevel();
+                    boi.setLoc(new Point(100, 100));
+                    points = 0;
+                }
+                if(keys[KeyEvent.VK_M]){
+                    level = 0;
+                    loadLevel();
+                }
                 //This will call update on each sprite.
                 theWorld.updateSprites();
 //                for(Sprite b: badboi){
@@ -90,13 +111,20 @@ public class Main extends JPanel {
                             if (b.intersects(c)) {
                                 b.setLoc(new Point(1000000, 100000000));
                                 c.setLoc(new Point(100000, 10000000));
+                                points++;
+                            }
+                            if (c.intersects(boi)){
+                                boi.setLoc(new Point(1000000, 10000000));
                             }
                         }
 
                     }
 
                 }
-
+                if(isDead() == true && level > 0){
+                    level++;
+                    loadLevel();
+                }
 
 
 
@@ -104,6 +132,11 @@ public class Main extends JPanel {
                     for(Sprite s: bullets){
                         ((Bullet)s).setSpeed(0);
                     }
+
+
+                if(level == 3 && isDead() == true){
+
+                }
 
 
                 repaint();
@@ -180,26 +213,124 @@ public class Main extends JPanel {
 
 
         }
+
         for (Sprite b: bullets) {
             b.draw(g2);
 
         }
+        g2.setPaint(Color.GREEN);
+        g2.drawString("Points: " + points, 50, 50);
 
-        if(boi.getLoc().x >= FRAMEWIDTH + 500){
-            g2.fillRect(0,0,FRAMEWIDTH,FRAMEHEIGHT);
+        if(level == 0){
+            g2.setPaint(Color.WHITE);
+            g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
+            g2.setPaint(Color.BLUE);
+            g2.setFont(new Font("Arial", Font.BOLD, 32));
+            g2.drawString("WELCOME TO", FRAMEWIDTH/2, FRAMEHEIGHT/3);
+            g2.setFont(new Font("Arial", Font.BOLD, 46));
+            g2.drawString("DODGE", FRAMEWIDTH/2, FRAMEHEIGHT/2);
+            g2.setFont(new Font("Arial", Font.BOLD, 24));
+            g2.drawString("By: Dima, and Jared", FRAMEWIDTH/2, FRAMEHEIGHT*2/3);
+            g2.drawString("Press SPACE BAR to play", FRAMEWIDTH/3 - 100, FRAMEHEIGHT/2);
+
+        }
+
+        if(boi.getLoc().x >= FRAMEWIDTH + 500 && level > 0){
+            g2.setPaint(Color.BLACK);
+            g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
             g2.setPaint(Color.RED);
             g2.setFont(new Font("Arial", Font.BOLD, 32));
-            g2.drawString("YOU LOSE", FRAMEWIDTH/2, FRAMEHEIGHT/3);
+            g2.drawString("YOU LOOSE", FRAMEWIDTH/2, FRAMEHEIGHT/3);
             g2.setFont(new Font("Arial", Font.BOLD, 46));
             g2.drawString("GAME OVER", FRAMEWIDTH/2, FRAMEHEIGHT/2);
+            g2.setFont(new Font("Arial", Font.BOLD, 24));
+            g2.drawString("PRESS R TO RESTART", FRAMEWIDTH/2, FRAMEHEIGHT*2/3);
+            g2.drawString("You Got " + points + " Point(s).", FRAMEWIDTH/3, FRAMEHEIGHT/2);
+            g2.drawString("Press M for main menu", FRAMEWIDTH/3 - 100, FRAMEHEIGHT*2/3);
+
+        }
+        if(level == 3 && isDead() == true && level > 0){
+            g2.setPaint(Color.BLACK);
+            g2.fillRect(0, 0, FRAMEWIDTH, FRAMEHEIGHT);
+            g2.setPaint(Color.GREEN);
+            g2.setFont(new Font("Arial", Font.BOLD, 32));
+            g2.drawString("CONGRATULATIONS", FRAMEWIDTH/2, FRAMEHEIGHT/3);
+            g2.setFont(new Font("Arial", Font.BOLD, 46));
+            g2.drawString("YOU WIN!!!!", FRAMEWIDTH/2, FRAMEHEIGHT/2);
+            g2.setFont(new Font("Arial", Font.BOLD, 24));
+            g2.drawString("PRESS R TO RESTART", FRAMEWIDTH/2, FRAMEHEIGHT*2/3);
+            g2.drawString("You Got " + points + " Point(s).", FRAMEWIDTH/3, FRAMEHEIGHT/2);
+            g2.drawString("Press M for main menu", FRAMEWIDTH/3 - 100, FRAMEHEIGHT*2/3);
+
         }
 
     }
 
-    public void loadlevel(){
-        //arraylist.clear()
-        //if(level == 1){}
-        //stuff
+    public void loadLevel(){
+
+
+        if(level == 0){
+            for(Sprite b: bullets){
+                ((Bullet)b).setSpeed(0);
+            }
+
+        }
+
+        if(level == 1){
+
+            badboi.clear();
+            bullets.clear();
+            for (int i = 0; i < 5; i++) {
+//                badboi.clear();
+//                bullets.clear();
+                BadBoi b = new BadBoi((int) (Math.random() * (FRAMEWIDTH-150)+75), (int) (Math.random() * (FRAMEHEIGHT-150)+75), Sprite.NORTH, theWorld);
+                badboi.add(b);
+//                for(Sprite b: badboi){
+                    bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld, boi));
+
+            }
+        }
+        if(level == 2){
+            badboi.clear();
+            bullets.clear();
+            for (int i = 0; i < 6; i++) {
+
+                BadBoi b = new BadBoi((int) (Math.random() * (FRAMEWIDTH-150)+75), (int) (Math.random() * (FRAMEHEIGHT-150)+75), Sprite.NORTH, theWorld);
+                badboi.add(b);
+//                for(Sprite b: badboi){
+                bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld, boi));
+//                for(Sprite e: bullets){
+//                    e.setSpeed((int)(Math.random() * 7) + 5);
+//                }
+                //timer.setDelay(timer.getDelay() - 10);
+
+
+            }
+        }
+        if(level == 3){
+            badboi.clear();
+            bullets.clear();
+            for (int i = 0; i < 7; i++) {
+
+                BadBoi b = new BadBoi((int) (Math.random() * (FRAMEWIDTH-150)+75), (int) (Math.random() * (FRAMEHEIGHT-150)+75), Sprite.NORTH, theWorld);
+                badboi.add(b);
+//                for(Sprite b: badboi){
+                bullets.add(new Bullet(b.getLoc().x, b.getLoc().y, theWorld, boi));
+
+            }
+        }
+
+    }
+    public boolean isDead(){
+        if(badboi.size()>=0) {
+            for (Sprite b : badboi) {
+                if (b.getLoc().x != 100000) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     //sets ups the panel and frame.
